@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -38,8 +40,9 @@ import androidx.compose.ui.unit.sp
 import com.muradnajafli.todolistcompose.data.model.ToDoEntity
 import com.muradnajafli.todolistcompose.data.model.addDate
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ToDoItem(
+fun LazyItemScope.ToDoItem(
     toDo: ToDoEntity,
     onClick: () -> Unit,
     onDelete: () -> Unit
@@ -51,7 +54,8 @@ fun ToDoItem(
     )
     Box(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .animateItemPlacement(),
         contentAlignment = Alignment.BottomEnd
     ) {
         Row(
@@ -143,18 +147,4 @@ fun ToDoItem(
             fontSize = 10.sp
         )
     }
-}
-
-@Preview
-@Composable
-fun ToDoItemPreview() {
-    ToDoItem(
-        toDo = ToDoEntity(
-            title = "Title",
-            subTitle = "SubTitle",
-            isDone = true
-        ),
-        onClick = {},
-        onDelete = {}
-    )
 }

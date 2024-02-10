@@ -1,6 +1,5 @@
 package com.muradnajafli.todolistcompose.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muradnajafli.todolistcompose.data.model.ToDoEntity
@@ -28,10 +27,13 @@ class HomeViewModel @Inject constructor(
     val toDoList = _toDoList.asStateFlow()
 
     init {
+        getToDos()
+    }
+
+    private fun getToDos() {
         viewModelScope.launch {
-            getToDosUseCase().collect {
-                Log.d("ViewModel", "Fetched todos: $it")
-                _toDoList.update { it }
+            getToDosUseCase().collect { result ->
+                _toDoList.update { result }
             }
         }
     }
