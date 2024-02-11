@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.ToDoListCompose" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.TodoListCompose" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

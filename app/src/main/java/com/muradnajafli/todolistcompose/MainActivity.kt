@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muradnajafli.todolistcompose.presentation.home.HomeScreen
 import com.muradnajafli.todolistcompose.presentation.home.HomeViewModel
-import com.muradnajafli.todolistcompose.presentation.theme.ToDoListComposeTheme
+import com.muradnajafli.todolistcompose.presentation.theme.TodoListComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ToDoListComposeTheme {
+            TodoListComposeTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
