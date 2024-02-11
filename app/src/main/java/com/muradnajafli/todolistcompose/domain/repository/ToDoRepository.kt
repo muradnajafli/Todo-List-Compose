@@ -2,7 +2,6 @@ package com.muradnajafli.todolistcompose.domain.repository
 
 import com.muradnajafli.todolistcompose.data.model.ToDoEntity
 import kotlinx.coroutines.flow.Flow
-import org.mongodb.kbson.ObjectId
 
 interface ToDoRepository {
     fun readAllToDos(): Flow<List<ToDoEntity>>
