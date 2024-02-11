@@ -1,4 +1,4 @@
-package com.muradnajafli.todolistcompose.ui
+package com.muradnajafli.todolistcompose.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,8 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.muradnajafli.todolistcompose.data.model.ToDoEntity
-import com.muradnajafli.todolistcompose.ui.home.HomeViewModel
-import com.muradnajafli.todolistcompose.ui.theme.ubuntu
+import com.muradnajafli.todolistcompose.presentation.home.HomeViewModel
+import com.muradnajafli.todolistcompose.presentation.ui.theme.ubuntu
 
 @Composable
 fun ToDoDialog(
@@ -61,10 +61,10 @@ fun ToDoDialog(
                 onClick = {
                     if (title.isNotEmpty() && subTitle.isNotEmpty()) {
                         viewModel.createToDo(
-                            ToDoEntity(
-                                title = title,
-                                subTitle = subTitle
-                            )
+                            ToDoEntity().apply {
+                                this.title = title
+                                this.subTitle = subTitle
+                            }
                         )
                         setDialogOpen(false)
                     }

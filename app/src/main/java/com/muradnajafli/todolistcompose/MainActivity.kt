@@ -8,9 +8,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.muradnajafli.todolistcompose.ui.home.HomeScreen
-import com.muradnajafli.todolistcompose.ui.home.HomeViewModel
-import com.muradnajafli.todolistcompose.ui.theme.ToDoListComposeTheme
+import com.muradnajafli.todolistcompose.presentation.home.HomeScreen
+import com.muradnajafli.todolistcompose.presentation.home.HomeViewModel
+import com.muradnajafli.todolistcompose.presentation.ui.theme.ToDoListComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

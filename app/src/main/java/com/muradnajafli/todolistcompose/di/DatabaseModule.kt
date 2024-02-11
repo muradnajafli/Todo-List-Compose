@@ -1,13 +1,12 @@
 package com.muradnajafli.todolistcompose.di
 
-import android.app.Application
-import androidx.room.Room
-import com.muradnajafli.todolistcompose.data.database.ToDoDao
-import com.muradnajafli.todolistcompose.data.database.ToDoDatabase
+import com.muradnajafli.todolistcompose.data.model.ToDoEntity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
 import javax.inject.Singleton
 
 @Module
@@ -16,18 +15,14 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(app: Application): ToDoDatabase {
-        return Room.databaseBuilder(
-            app,
-            ToDoDatabase::class.java,
-            "toDo_database"
-        ).fallbackToDestructiveMigration().build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideFavMovieDao(db: ToDoDatabase): ToDoDao {
-        return db.toDoDao()
+    fun provideDatabase(): Realm {
+        return Realm.open(
+            configuration = RealmConfiguration.create(
+                schema = setOf(
+                    ToDoEntity::class
+                )
+            )
+        )
     }
 
 }

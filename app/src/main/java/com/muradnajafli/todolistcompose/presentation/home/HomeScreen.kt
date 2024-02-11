@@ -1,4 +1,4 @@
-package com.muradnajafli.todolistcompose.ui.home
+package com.muradnajafli.todolistcompose.presentation.home
 
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
@@ -20,7 +20,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,15 +29,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.muradnajafli.todolistcompose.ui.ToDoDialog
-import com.muradnajafli.todolistcompose.ui.model.ToDoItem
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.muradnajafli.todolistcompose.data.model.ToDoEntity
+import com.muradnajafli.todolistcompose.presentation.ToDoDialog
+import com.muradnajafli.todolistcompose.presentation.model.ToDoItem
 
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
-    val toDos by viewModel.toDoList.collectAsState()
+    val toDos by viewModel.toDoList.collectAsStateWithLifecycle()
 
     val (dialogOpen, setDialogOpen) = remember {
         mutableStateOf(false)
@@ -88,7 +89,6 @@ fun HomeScreen(
                 enter = scaleIn() + fadeIn(),
                 exit = scaleOut() + fadeOut()
             ) {
-                Log.i("IS_EMPTY", "HomeScreen: ${toDos.isEmpty()}")
                 Text(
                     text = "No ToDos Yet!",
                     color = Color.White,
@@ -113,16 +113,19 @@ fun HomeScreen(
                 ) {
                     items(
                         toDos.sortedBy { it.isDone },
-                        key = { it.id }
+                        key = { it._id.toHexString() }
                     ) { todo ->
                         ToDoItem(
                             toDo = todo,
                             onClick = {
-                                viewModel.updateToDo(
-                                    todo.copy(
-                                        isDone = !todo.isDone
-                                    )
-                                )
+                                val toDo = ToDoEntity().apply {
+                                    this._id = todo._id
+                                    this.title = todo.title
+                                    this.subTitle = todo.subTitle
+                                    this.isDone = !todo.isDone
+                                    this.addedTime = todo.addedTime
+                                }
+                                viewModel.updateToDo(toDo)
                             },
                             onDelete = { viewModel.deleteToDo(todo) }
                         )

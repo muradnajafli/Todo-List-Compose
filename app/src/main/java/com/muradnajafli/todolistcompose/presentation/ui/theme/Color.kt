@@ -1,4 +1,4 @@
-package com.muradnajafli.todolistcompose.ui.theme
+package com.muradnajafli.todolistcompose.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

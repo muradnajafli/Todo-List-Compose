@@ -1,4 +1,4 @@
-package com.muradnajafli.todolistcompose.ui.model
+package com.muradnajafli.todolistcompose.presentation.model
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
