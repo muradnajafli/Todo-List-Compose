@@ -7,7 +7,7 @@ import org.mongodb.kbson.ObjectId
 import java.util.Date
 import java.util.Locale
 
-class ToDoEntity: RealmObject {
+class TodoEntity: RealmObject {
     @PrimaryKey var _id: ObjectId = ObjectId()
     var title: String = ""
     var subTitle: String = ""
@@ -15,6 +15,6 @@ class ToDoEntity: RealmObject {
     var addedTime: Long = System.currentTimeMillis()
 }
 
-val ToDoEntity.addDate: String
+val TodoEntity.addDate: String
     get() = SimpleDateFormat("yyyy/MM/dd hh:mm", Locale.ENGLISH)
         .format(Date(addedTime))

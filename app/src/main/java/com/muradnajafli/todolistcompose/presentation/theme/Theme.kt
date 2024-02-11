@@ -1,4 +1,4 @@
-package com.muradnajafli.todolistcompose.presentation.ui.theme
+package com.muradnajafli.todolistcompose.presentation.theme
 
 import android.app.Activity
 import android.os.Build

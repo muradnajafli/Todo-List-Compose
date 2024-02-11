@@ -1,6 +1,6 @@
 package com.muradnajafli.todolistcompose.di
 
-import com.muradnajafli.todolistcompose.data.model.ToDoEntity
+import com.muradnajafli.todolistcompose.data.model.TodoEntity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ object DatabaseModule {
         return Realm.open(
             configuration = RealmConfiguration.create(
                 schema = setOf(
-                    ToDoEntity::class
+                    TodoEntity::class
                 )
             )
         )

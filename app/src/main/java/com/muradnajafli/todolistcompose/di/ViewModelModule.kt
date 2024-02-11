@@ -1,14 +1,14 @@
 package com.muradnajafli.todolistcompose.di
 
-import com.muradnajafli.todolistcompose.domain.repository.ToDoRepository
-import com.muradnajafli.todolistcompose.domain.usecase.AddToDoUseCase
-import com.muradnajafli.todolistcompose.domain.usecase.AddToDoUseCaseImpl
-import com.muradnajafli.todolistcompose.domain.usecase.DeleteToDoUseCase
-import com.muradnajafli.todolistcompose.domain.usecase.DeleteToDoUseCaseImpl
-import com.muradnajafli.todolistcompose.domain.usecase.GetToDosUseCase
-import com.muradnajafli.todolistcompose.domain.usecase.GetToDosUseCaseImpl
-import com.muradnajafli.todolistcompose.domain.usecase.UpdateToDoUseCase
-import com.muradnajafli.todolistcompose.domain.usecase.UpdateToDoUseCaseImpl
+import com.muradnajafli.todolistcompose.domain.repository.TodoRepository
+import com.muradnajafli.todolistcompose.domain.usecase.AddTodoUseCase
+import com.muradnajafli.todolistcompose.domain.usecase.AddTodoUseCaseImpl
+import com.muradnajafli.todolistcompose.domain.usecase.DeleteTodoUseCase
+import com.muradnajafli.todolistcompose.domain.usecase.DeleteTodoUseCaseImpl
+import com.muradnajafli.todolistcompose.domain.usecase.GetTodosUseCase
+import com.muradnajafli.todolistcompose.domain.usecase.GetTodosUseCaseImpl
+import com.muradnajafli.todolistcompose.domain.usecase.UpdateTodoUseCase
+import com.muradnajafli.todolistcompose.domain.usecase.UpdateTodoUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,33 +22,33 @@ object ViewModelModule {
     @Provides
     @ViewModelScoped
     fun getToDos(
-        repository: ToDoRepository
-    ): GetToDosUseCase {
-        return GetToDosUseCaseImpl(repository)
+        repository: TodoRepository
+    ): GetTodosUseCase {
+        return GetTodosUseCaseImpl(repository)
     }
 
     @Provides
     @ViewModelScoped
     fun addToDo(
-        repository: ToDoRepository
-    ): AddToDoUseCase {
-        return AddToDoUseCaseImpl(repository)
+        repository: TodoRepository
+    ): AddTodoUseCase {
+        return AddTodoUseCaseImpl(repository)
     }
 
     @Provides
     @ViewModelScoped
     fun updateToDo(
-        repository: ToDoRepository
-    ): UpdateToDoUseCase {
-        return UpdateToDoUseCaseImpl(repository)
+        repository: TodoRepository
+    ): UpdateTodoUseCase {
+        return UpdateTodoUseCaseImpl(repository)
     }
 
     @Provides
     @ViewModelScoped
     fun deleteToDo(
-        repository: ToDoRepository
-    ): DeleteToDoUseCase {
-        return DeleteToDoUseCaseImpl(repository)
+        repository: TodoRepository
+    ): DeleteTodoUseCase {
+        return DeleteTodoUseCaseImpl(repository)
     }
 
 }

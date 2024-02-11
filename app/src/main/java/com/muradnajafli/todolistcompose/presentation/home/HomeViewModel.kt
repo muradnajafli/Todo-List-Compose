@@ -2,11 +2,11 @@ package com.muradnajafli.todolistcompose.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.muradnajafli.todolistcompose.data.model.ToDoEntity
-import com.muradnajafli.todolistcompose.domain.usecase.AddToDoUseCase
-import com.muradnajafli.todolistcompose.domain.usecase.DeleteToDoUseCase
-import com.muradnajafli.todolistcompose.domain.usecase.GetToDosUseCase
-import com.muradnajafli.todolistcompose.domain.usecase.UpdateToDoUseCase
+import com.muradnajafli.todolistcompose.data.model.TodoEntity
+import com.muradnajafli.todolistcompose.domain.usecase.AddTodoUseCase
+import com.muradnajafli.todolistcompose.domain.usecase.DeleteTodoUseCase
+import com.muradnajafli.todolistcompose.domain.usecase.GetTodosUseCase
+import com.muradnajafli.todolistcompose.domain.usecase.UpdateTodoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,43 +17,43 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getToDosUseCase: GetToDosUseCase,
-    private val addToDoUseCase: AddToDoUseCase,
-    private val updateToDoUseCase: UpdateToDoUseCase,
-    private val deleteToDoUseCase: DeleteToDoUseCase
+    private val getTodosUseCase: GetTodosUseCase,
+    private val addTodoUseCase: AddTodoUseCase,
+    private val updateTodoUseCase: UpdateTodoUseCase,
+    private val deleteTodoUseCase: DeleteTodoUseCase
 ) : ViewModel() {
 
-    private val _toDoList: MutableStateFlow<List<ToDoEntity>> = MutableStateFlow(emptyList())
-    val toDoList = _toDoList.asStateFlow()
+    private val _todoList: MutableStateFlow<List<TodoEntity>> = MutableStateFlow(emptyList())
+    val todoList = _todoList.asStateFlow()
 
     init {
-        getToDos()
+        getTodos()
     }
 
-    private fun getToDos() {
+    private fun getTodos() {
         viewModelScope.launch {
-            getToDosUseCase().collect { result ->
-                _toDoList.update { result }
+            getTodosUseCase().collect { result ->
+                _todoList.update { result }
             }
         }
     }
 
-    fun createToDo(toDoEntity: ToDoEntity) {
+    fun createTodo(todo: TodoEntity) {
         viewModelScope.launch {
-            addToDoUseCase(toDoEntity)
+            addTodoUseCase(todo)
         }
     }
 
-    fun updateToDo(toDoEntity: ToDoEntity) {
+    fun updateTodo(todo: TodoEntity) {
         viewModelScope.launch {
-            updateToDoUseCase(toDoEntity)
-        }
-
-    }
-
-    fun deleteToDo(toDoEntity: ToDoEntity) {
-        viewModelScope.launch {
-            deleteToDoUseCase(toDoEntity)
+            updateTodoUseCase(todo)
         }
     }
+
+    fun deleteTodo(todo: TodoEntity) {
+        viewModelScope.launch {
+            deleteTodoUseCase(todo)
+        }
+    }
+
 }

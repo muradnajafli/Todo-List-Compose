@@ -1,4 +1,4 @@
-package com.muradnajafli.todolistcompose.presentation.model
+package com.muradnajafli.todolistcompose.presentation.home.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
@@ -36,18 +36,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muradnajafli.todolistcompose.data.model.ToDoEntity
+import com.muradnajafli.todolistcompose.data.model.TodoEntity
 import com.muradnajafli.todolistcompose.data.model.addDate
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LazyItemScope.ToDoItem(
-    toDo: ToDoEntity,
+fun LazyItemScope.TodoItem(
+    todo: TodoEntity,
     onClick: () -> Unit,
     onDelete: () -> Unit
 ) {
     val color by animateColorAsState(
-        targetValue = if (toDo.isDone) Color(0xFF24D65F) else Color(0xFFFF6363),
+        targetValue = if (todo.isDone) Color(0xFF24D65F) else Color(0xFFFF6363),
         label = "",
         animationSpec = tween(500)
     )
@@ -82,7 +82,7 @@ fun LazyItemScope.ToDoItem(
                 ) {
                     Row {
                         AnimatedVisibility(
-                            visible = toDo.isDone,
+                            visible = todo.isDone,
                             enter = scaleIn() + fadeIn(),
                             exit = scaleOut() + fadeOut()
                         ) {
@@ -95,7 +95,7 @@ fun LazyItemScope.ToDoItem(
                     }
                     Row {
                         AnimatedVisibility(
-                            visible = !toDo.isDone,
+                            visible = !todo.isDone,
                             enter = scaleIn() + fadeIn(),
                             exit = scaleOut() + fadeOut()
                         ) {
@@ -112,13 +112,13 @@ fun LazyItemScope.ToDoItem(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = toDo.title,
+                        text = todo.title,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
                     )
                     Text(
-                        text = toDo.subTitle,
+                        text = todo.subTitle,
                         color = Color(0xFFEBEBEB),
                         fontSize = 12.sp
                     )
@@ -141,7 +141,7 @@ fun LazyItemScope.ToDoItem(
             }
         }
         Text(
-            text = toDo.addDate,
+            text = todo.addDate,
             color = Color.White,
             fontSize = 10.sp
         )
