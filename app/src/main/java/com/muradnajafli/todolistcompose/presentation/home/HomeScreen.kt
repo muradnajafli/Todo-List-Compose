@@ -27,16 +27,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muradnajafli.todolistcompose.data.model.TodoEntity
+import com.muradnajafli.todolistcompose.data.model.TodoList
 import com.muradnajafli.todolistcompose.presentation.home.components.TodoDialog
 import com.muradnajafli.todolistcompose.presentation.home.components.TodoItem
 
 @Composable
 fun HomeScreen(
-    todoList: List<TodoEntity>,
-    onCreateTodo: (TodoEntity) -> Unit,
-    onUpdateTodo: (TodoEntity) -> Unit,
-    onDeleteTodo: (TodoEntity) -> Unit
+    todoList: List<TodoList>,
+    onCreateTodo: (TodoList) -> Unit,
+    onUpdateTodo: (TodoList) -> Unit,
+    onDeleteTodo: (TodoList) -> Unit
 ) {
 
     val (dialogOpen, setDialogOpen) = remember {
@@ -79,18 +79,18 @@ fun HomeScreen(
         ToDoListVisibility(
             todoList = todoList,
             paddings = paddings,
-            onUpdateTodo = onUpdateTodo,
-            onDeleteTodo = onDeleteTodo
+            onDeleteTodo = onDeleteTodo,
+            onUpdateTodo = onUpdateTodo
         )
     }
 }
 
 @Composable
 fun ToDoListVisibility(
-    todoList: List<TodoEntity>,
+    todoList: List<TodoList>,
     paddings: PaddingValues,
-    onUpdateTodo: (TodoEntity) -> Unit,
-    onDeleteTodo: (TodoEntity) -> Unit
+    onUpdateTodo: (TodoList) -> Unit,
+    onDeleteTodo: (TodoList) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -132,7 +132,7 @@ fun ToDoListVisibility(
                     TodoItem(
                         todo = todo,
                         onClick = {
-                            val toDo = TodoEntity().apply {
+                            val toDo = TodoList().apply {
                                 this._id = todo._id
                                 this.title = todo.title
                                 this.subTitle = todo.subTitle

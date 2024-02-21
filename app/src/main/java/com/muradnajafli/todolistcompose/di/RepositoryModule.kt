@@ -1,7 +1,7 @@
 package com.muradnajafli.todolistcompose.di
 
-import com.muradnajafli.todolistcompose.data.repository.TodoRepositoryImpl
-import com.muradnajafli.todolistcompose.domain.repository.TodoRepository
+import com.muradnajafli.todolistcompose.data.repository.TodoListRepositoryImpl
+import com.muradnajafli.todolistcompose.domain.repository.TodoListRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,8 +14,8 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun bindToDoRepository(
-        toDoRepositoryImpl: TodoRepositoryImpl
-    ): TodoRepository
+    fun bindToDoListRepository(
+        toDoRepositoryImpl: TodoListRepositoryImpl
+    ): TodoListRepository
 
 }

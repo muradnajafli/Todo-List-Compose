@@ -36,13 +36,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muradnajafli.todolistcompose.data.model.TodoEntity
+import com.muradnajafli.todolistcompose.data.model.TodoList
 import com.muradnajafli.todolistcompose.data.model.addDate
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LazyItemScope.TodoItem(
-    todo: TodoEntity,
+    todo: TodoList,
     onClick: () -> Unit,
     onDelete: () -> Unit
 ) {

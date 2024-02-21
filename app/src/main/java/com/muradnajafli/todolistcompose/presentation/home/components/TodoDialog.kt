@@ -19,9 +19,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.muradnajafli.todolistcompose.data.model.TodoEntity
+import com.muradnajafli.todolistcompose.data.model.TodoList
+import com.muradnajafli.todolistcompose.presentation.theme.Dark500
 import com.muradnajafli.todolistcompose.presentation.theme.ubuntu
 
 @Composable
@@ -31,7 +33,7 @@ fun TodoDialog(
     setTitle: (String) -> Unit,
     subTitle: String,
     setSubTitle: (String) -> Unit,
-    onCreateTodo: (TodoEntity) -> Unit,
+    onCreateTodo: (TodoList) -> Unit,
 ) {
     Dialog(
         onDismissRequest = { setDialogOpen(false) }
@@ -45,13 +47,13 @@ fun TodoDialog(
             verticalArrangement = Arrangement.Center
         ) {
             ToDoTextField(
-                text = "Title",
+                labelText = "Title",
                 value = title,
                 setValue = setTitle
             )
             Spacer(modifier = Modifier.height(4.dp))
             ToDoTextField(
-                text = "Sub Title",
+                labelText = "Sub Title",
                 value = subTitle,
                 setValue = setSubTitle
             )
@@ -60,7 +62,7 @@ fun TodoDialog(
                 onClick = {
                     if (title.isNotEmpty() && subTitle.isNotEmpty()) {
                         onCreateTodo(
-                            TodoEntity().apply {
+                            TodoList().apply {
                                 this.title = title
                                 this.subTitle = subTitle
                             }
@@ -87,19 +89,32 @@ fun TodoDialog(
 
 @Composable
 fun ToDoTextField(
-    text: String,
+    labelText: String,
     value: String,
     setValue: (String) -> Unit
 ) {
     OutlinedTextField(
-        label = { Text(text = text) },
+        label = { Text(text = labelText, color = Color.Black) },
         colors = TextFieldDefaults.colors(
+            unfocusedLabelColor = Color.White,
             focusedLabelColor = Color.White,
+            unfocusedTextColor = Dark500,
             focusedTextColor = Color.White
         ),
         value = value,
         onValueChange = { setValue(it) },
         modifier = Modifier
             .fillMaxWidth()
+    )
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun TodoDialogPreview() {
+    ToDoTextField(
+        labelText = "Title",
+        value = "Title2",
+        setValue = {}
     )
 }
